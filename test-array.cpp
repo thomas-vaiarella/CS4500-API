@@ -31,8 +31,8 @@ void testPush() {
     Array * arr = new Array();
     arr->push(object1);
     arr->push(object2);
-    t_true(arr->get(0).equals(object1));
-    t_true(arr->get(1).equals(object2));
+    t_true(arr->get(0)->equals(object1));
+    t_true(arr->get(1)->equals(object2));
     t_true(arr->length() == 2);
 }
 
@@ -42,11 +42,11 @@ void testPop() {
     Array * arr = new Array();
     arr->push(object1);
     arr->push(object2);
-    t_true(arr->get(0).equals(object1));
-    t_true(arr->get(1).equals(object2));
+    t_true(arr->get(0)->equals(object1));
+    t_true(arr->get(1)->equals(object2));
     t_true(arr->length() == 2);
     arr->pop();
-    t_true(arr->get(0).equals(object1));
+    t_true(arr->get(0)->equals(object1));
     t_true(arr->length() == 1);
 }
 
@@ -57,11 +57,11 @@ void testAddFront() {
     Array * arr = new Array();
     arr->push(object1);
     arr->push(object2);
-    t_true(arr->get(0).equals(object1));
-    t_true(arr->get(1).equals(object2));
+    t_true(arr->get(0)->equals(object1));
+    t_true(arr->get(1)->equals(object2));
     arr->addFront(object3);
     t_true(arr->length() == 3);
-    t_true(arr->get(0).equals(object3));
+    t_true(arr->get(0)->equals(object3));
 }
 
 void testRemoveFront() { 
@@ -70,11 +70,11 @@ void testRemoveFront() {
     Array * arr = new Array();
     arr->push(object1);
     arr->push(object2);
-    t_true(arr->get(0).equals(object1));
-    t_true(arr->get(1).equals(object2));
+    t_true(arr->get(0)->equals(object1));
+    t_true(arr->get(1)->equals(object2));
     arr->removeFront();
     t_true(arr->length() == 1);
-    t_true(arr->get(0).equals(object2));
+    t_true(arr->get(0)->equals(object2));
 }
 
 void testSet() { 
@@ -84,12 +84,12 @@ void testSet() {
     Array * arr = new Array();
     arr->push(object1);
     arr->push(object2);
-    t_true(arr->get(0).equals(object1));
-    t_true(arr->get(1).equals(object2));
+    t_true(arr->get(0)->equals(object1));
+    t_true(arr->get(1)->equals(object2));
     arr->set(object3, 0);
     t_true(arr->length() == 2);
-    t_true(arr->get(0).equals(object3));
-    t_true(arr->get(1).equals(object2));
+    t_true(arr->get(0)->equals(object3));
+    t_true(arr->get(1)->equals(object2));
 }
 
 void testInsert() { 
@@ -99,13 +99,13 @@ void testInsert() {
     Array * arr = new Array();
     arr->push(object1);
     arr->push(object2);
-    t_true(arr->get(0).equals(object1));
-    t_true(arr->get(1).equals(object2));
+    t_true(arr->get(0)->equals(object1));
+    t_true(arr->get(1)->equals(object2));
     arr->insert(object3, 1);
     t_true(arr->length() == 3);
-    t_true(arr->get(0).equals(object1));
-    t_true(arr->get(1).equals(object3));
-    t_true(arr->get(2).equals(object2));
+    t_true(arr->get(0)->equals(object1));
+    t_true(arr->get(1)->equals(object3));
+    t_true(arr->get(2)->equals(object2));
 }
 
 void testRemove() { 
@@ -116,14 +116,14 @@ void testRemove() {
     arr->push(object1);
     arr->push(object2);
     arr->push(object3);
-    t_true(arr->get(0).equals(object1));
-    t_true(arr->get(1).equals(object2));
-    t_true(arr->get(2).equals(object3));
+    t_true(arr->get(0)->equals(object1));
+    t_true(arr->get(1)->equals(object2));
+    t_true(arr->get(2)->equals(object3));
     t_true(arr->length() == 3);
     arr->remove(1);
     t_true(arr->length() == 2);
-    t_true(arr->get(0).equals(object1));
-    t_true(arr->get(1).equals(object3));
+    t_true(arr->get(0)->equals(object1));
+    t_true(arr->get(1)->equals(object3));
 }
 
 void testContainsAndIndexOf() { 
@@ -135,9 +135,9 @@ void testContainsAndIndexOf() {
     arr->push(object1);
     arr->push(object2);
     arr->push(object3);
-    t_true(arr->get(0).equals(object1));
-    t_true(arr->get(1).equals(object2));
-    t_true(arr->get(2).equals(object3));
+    t_true(arr->get(0)->equals(object1));
+    t_true(arr->get(1)->equals(object2));
+    t_true(arr->get(2)->equals(object3));
     t_true(arr->contains(object1));
     t_true(arr->contains(object2));
     t_true(arr->contains(object3));
@@ -145,4 +145,16 @@ void testContainsAndIndexOf() {
     t_true(arr->indexOf(object1) == 0);
     t_true(arr->indexOf(object2) == 1);
     t_true(arr->indexOf(object3) == 2);
+}
+
+int main() {
+    testPush();
+    testPop(); 
+    testAddFront();
+    testRemoveFront();
+    testSet();
+    testInsert();
+    testRemove();
+    testContainsAndIndexOf();
+    return 0;
 }

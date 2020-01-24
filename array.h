@@ -17,14 +17,14 @@ class Array : public Object {
          * Removes the last item of an array
          * @return the removed item
          */
-        Object pop() { }
+        Object* pop() { }
 
         /**
          * Gets the array's element at index
          * @param index The index at which the item will be retreived from
          * @return The object residing at the index
          */
-        Object get(int index) { }
+        Object* get(int index) { }
 
         /**
          * Adds an item to the start of an array
@@ -36,7 +36,7 @@ class Array : public Object {
          * Removes the first item of an array
          * @return The removed item
          */
-        Object removeFront() { }
+        Object* removeFront() { }
 
         /**
          * Sets the array's element at index to the item
@@ -44,7 +44,7 @@ class Array : public Object {
          * @param index The index at which the item will be inserted
          * @return The object that was replaced
          */
-        Object set(Object* item, int index) { }
+        Object* set(Object* item, int index) { }
 
         /**
          * Inserts the element at the given index
@@ -58,7 +58,7 @@ class Array : public Object {
          * @param index The index at which the item will be removed
          * @return The object that was removed
          */
-        Object remove(int index) { }
+        Object* remove(int index) { }
 
         /**
          * Returns the length of the array
