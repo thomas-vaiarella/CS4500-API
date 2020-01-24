@@ -1,4 +1,4 @@
-//ATTRIBUTION: Taken from the piazza post 166
+//ATTRIBUTION: Used implementation from the piazza post 166
 #pragma once                                                                     
 //lang::CwC                                                                                                                                                       
 #include "utility.h"                                                                                                                                               
