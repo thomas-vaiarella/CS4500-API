@@ -1,5 +1,6 @@
 #include "array.h"
 #include "string.h"
+#include <iostream>
 
 void FAIL() {   exit(1);    }
 void OK(const char* m) { std::cout << m; }
@@ -15,10 +16,6 @@ class TestObject : public Object {
         
         TestObject(int i) {
             index = i;
-        }
-
-        void hash_me() {
-            hash_ = index;
         }
 
         bool equals(Object* other) { 
@@ -224,7 +221,7 @@ void testStringInsert() {
     arr->push(str1);
     arr->push(str2);
     t_true(arr->get(0)->equals(str1));
-    t_true(arr->get(0)->equals(str2));
+    t_true(arr->get(1)->equals(str2));
     arr->set(str3, 0);
     t_true(arr->length() == 2);
     t_true(arr->get(0)->equals(str3));

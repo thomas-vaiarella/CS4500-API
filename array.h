@@ -1,6 +1,7 @@
 #pragma once
 
 #include "object.h"
+#include <stddef.h>
 
 class Array : public Object {
     public:
@@ -46,7 +47,7 @@ class Array : public Object {
          * @return the removed item
          */
         Object* pop() {
-            return this->remove(this->filled_elements_);
+            return this->remove(this->filled_elements_ - 1);
          }
 
         /**
@@ -146,14 +147,14 @@ class Array : public Object {
          * @return 1 if contains item, 0 otherwise
          */
         size_t contains(Object* item) {
-            return this->indexOf(item) > -1;
+            return this->indexOf(item) > -1 ? 1 : 0;
         }
 
         /**
          * Returns the index of the item
          * @return index of the item. -1 if it does not contain the item
          */
-        size_t indexOf(Object* item) {
+        int indexOf(Object* item) {
             for (int i = 0 ; i < filled_elements_; i++) {
                 if (vals_[i]->equals(item)) {
                     return i;

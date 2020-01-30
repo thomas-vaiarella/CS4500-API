@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <cstdio> 
+#include <stddef.h>
 
 /**
  * An immutable String class representing a char*
