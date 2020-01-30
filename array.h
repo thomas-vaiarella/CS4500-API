@@ -2,7 +2,6 @@
 
 #include "object.h"
 
-//TODO_TREVOR Should the `Object`s be pointers or just normal? 
 class Array : public Object {
     public:
 
@@ -16,10 +15,6 @@ class Array : public Object {
             vals_ = new Object*[1];
         }
 
-        ~Array() {
-            delete[] vals_;
-        }
-
         void expand_vals_(size_t size) {
             Object** newvals_ = new Object*[size];
             for (size_t i = 0; i < max_elements_; i++) {
@@ -29,6 +24,11 @@ class Array : public Object {
             vals_ = newvals_;
             max_elements_ = size;
         }
+
+        /** Destructor */
+        virtual ~Array() {
+            delete[] vals_;
+        };
 
         /**
          * Adds an item to the end of an array
