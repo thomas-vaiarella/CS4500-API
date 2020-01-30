@@ -1,6 +1,7 @@
 #include "array.h"
 #include "string.h"
 #include <iostream>
+#include <stddef.h>
 
 void FAIL() {   exit(1);    }
 void OK(const char* m) { std::cout << m; }
@@ -19,8 +20,13 @@ class TestObject : public Object {
         }
 
         bool equals(Object* other) { 
-            return this->hash() == other->hash(); 
-        } 
+            TestObject* o = dynamic_cast<TestObject*>(other);
+            return s != nullptr && this->index == o->index;
+        }
+
+        size_t hash() {
+            return index;
+        }
 };
 
 void testPush() { 
@@ -32,6 +38,7 @@ void testPush() {
     t_true(arr->get(0)->equals(object1));
     t_true(arr->get(1)->equals(object2));
     t_true(arr->length() == 2);
+    delete object1, object2, arr;
 }
 
 void testPop() { 
@@ -46,6 +53,7 @@ void testPop() {
     arr->pop();
     t_true(arr->get(0)->equals(object1));
     t_true(arr->length() == 1);
+    delete object1, object2, arr;
 }
 
 void testAddFront() { 
@@ -60,6 +68,7 @@ void testAddFront() {
     arr->addFront(object3);
     t_true(arr->length() == 3);
     t_true(arr->get(0)->equals(object3));
+    delete object1, object2, object3, arr;
 }
 
 void testRemoveFront() { 
@@ -73,6 +82,7 @@ void testRemoveFront() {
     arr->removeFront();
     t_true(arr->length() == 1);
     t_true(arr->get(0)->equals(object2));
+    delete object1, object2, arr;
 }
 
 void testSet() { 
@@ -88,6 +98,7 @@ void testSet() {
     t_true(arr->length() == 2);
     t_true(arr->get(0)->equals(object3));
     t_true(arr->get(1)->equals(object2));
+    delete object1, object2, object3, arr;
 }
 
 void testInsert() { 
@@ -104,6 +115,7 @@ void testInsert() {
     t_true(arr->get(0)->equals(object1));
     t_true(arr->get(1)->equals(object3));
     t_true(arr->get(2)->equals(object2));
+    delete object1, object2, object3, arr;
 }
 
 void testRemove() { 
@@ -122,6 +134,7 @@ void testRemove() {
     t_true(arr->length() == 2);
     t_true(arr->get(0)->equals(object1));
     t_true(arr->get(1)->equals(object3));
+    delete object1, object2, object3, arr;
 }
 
 void testContainsAndIndexOf() { 
@@ -143,6 +156,7 @@ void testContainsAndIndexOf() {
     t_true(arr->indexOf(object1) == 0);
     t_true(arr->indexOf(object2) == 1);
     t_true(arr->indexOf(object3) == 2);
+    delete object1, object2, object3, object4, arr;
 }
 
 void testStringPush() { 
@@ -154,6 +168,7 @@ void testStringPush() {
     t_true(arr->get(0)->equals(str1));
     t_true(arr->get(1)->equals(str2));
     t_true(arr->length() == 2);
+    delete str1, str2, arr;
 }
 
 void testStringPop() {
@@ -168,6 +183,7 @@ void testStringPop() {
     arr->pop();
     t_true(arr->get(0)->equals(str1));
     t_true(arr->length() == 1);
+    delete str1, str2, arr;
 }
 
 void testAddStringFront() {
@@ -182,6 +198,7 @@ void testAddStringFront() {
     arr->addFront(str3);
     t_true(arr->length() == 3);
     t_true(arr->get(0)->equals(str3));
+    delete str1, str2, str3, arr;
 }
 
 void testRemoveStringFront() {
@@ -195,6 +212,7 @@ void testRemoveStringFront() {
     arr->removeFront();
     t_true(arr->length() == 1);
     t_true(arr->get(0)->equals(str2));
+    delete str1, str2, arr;
 }
 
 void testStringSet() {
@@ -211,6 +229,7 @@ void testStringSet() {
     t_true(arr->get(0)->equals(str1));
     t_true(arr->get(1)->equals(str3));
     t_true(arr->get(2)->equals(str2));
+    delete str1, str2, str3, arr;
 }
 
 void testStringInsert() {
@@ -226,6 +245,7 @@ void testStringInsert() {
     t_true(arr->length() == 2);
     t_true(arr->get(0)->equals(str3));
     t_true(arr->get(1)->equals(str2));
+    delete str1, str2, str3, arr;
 }
 
 void testStringRemove() {
@@ -244,6 +264,7 @@ void testStringRemove() {
     t_true(arr->length() == 2);
     t_true(arr->get(0)->equals(str1));
     t_true(arr->get(1)->equals(str3));
+    delete str1, str2, str3, arr;
 }
 
 void testStringContainsAndIndexOf() { 
@@ -265,6 +286,7 @@ void testStringContainsAndIndexOf() {
     t_true(arr->indexOf(str1) == 0);
     t_true(arr->indexOf(str2) == 1);
     t_true(arr->indexOf(str3) == 2);
+    delete str1, str2, str3, str4, arr;
 }
 
 int main() {

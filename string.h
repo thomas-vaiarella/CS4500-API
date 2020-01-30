@@ -41,20 +41,20 @@ class String : public Object {
 
     /* Inherited from Object, generates a hash for a String */
     size_t hash() {
-            if (this->hashCode != 0) {
-                return this->hashCode;
-            }
-            size_t hashValue = 0;
-            size_t prime = 43;
-            size_t mod = 17;
-            size_t primeToPower = 1;
-            for (size_t i = 0; i < this->length; i++) {
-                size_t charVal = static_cast<size_t>(*(this->data + i));
-                hashValue += charVal * primeToPower % mod;
-                primeToPower = (primeToPower * prime) % mod;
-            }
+        if (this->hashCode != 0) {
+            return this->hashCode;
+        }
+        size_t hashValue = 0;
+        size_t prime = 43;
+        size_t mod = 17;
+        size_t primeToPower = 1;
+        for (size_t i = 0; i < this->length; i++) {
+            size_t charVal = static_cast<size_t>(*(this->data + i));
+            hashValue += charVal * primeToPower % mod;
+            primeToPower = (primeToPower * prime) % mod;
+        }
 
-            return hashValue;
+        return hashValue;
     }
 
     /* Inherited from Object, checks equality between an String and an Object */
